@@ -1,5 +1,5 @@
 # from flask import Flask
-from flask import Flask, render_template 
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -7,7 +7,10 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
     
-    
+@app.route("/data_handle", methods=['POST', 'GET'])
+def data_handle():
+    data = request.form['product']
+    return render_template("index.html",product = data)
 # @app.route("/salvador")
 # def salvador():
 #     return "Hello, Salvador"
