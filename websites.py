@@ -10,7 +10,7 @@ import time
 
 
 def amazon(product):
-    print("\n-------Amazon-------\n")
+    print("-----------------Amazon----------------------")
     ua = UserAgent()
     ua.chrome
     chrome_driver_path = "/usr/local/bin/chromedriver"
@@ -29,10 +29,6 @@ def amazon(product):
     print("User AGent\n")
     user_agent = driver.execute_script("return navigator.userAgent;")
     print(user_agent)
-    # driver.get("http://google.com")
-    # inputElement = driver.find_element_by_name("q")
-    # inputElement.send_keys("Amazon")
-    # inputElement.submit()
     driver.get("https://www.amazon.com/")
     #time.sleep(5)
     # elem = driver.find_element_by_partial_link_text("Amazon")
@@ -42,8 +38,15 @@ def amazon(product):
     elem1.send_keys(product)
     elem1.submit()
     driver.implicitly_wait(50)
+    window_after = driver.window_handles[0]
+    driver.switch_to.window(window_after)
+  #  elem2 = driver.find_element_by_partial_link_text(product)
     elem2 = driver.find_element_by_partial_link_text(product)
     elem2.click()
+    # driver.execute_script("arguments[0].click();", elem2)
+    window_after = driver.window_handles[0]
+    driver.switch_to.window(window_after)
+    #elem2.click()
     # newURl = driver.window_handles[0]
      # Getting current URL 
     driver.implicitly_wait(50)
@@ -51,58 +54,23 @@ def amazon(product):
   
     # Printing the URL 
     print(get_url) 
-    # driver.switch_to.window(newURl)
-    # elem3 = driver.find_element_by_tag_name("span")
-    # print(elem3)
-    
-    # phonenames = driver.find_element(By.ID, "productTitle")
-    # print(phonenames)
-    # prices=driver.find_element_by_class("_30jeq3 ").click()
-    
-    # url = driver.get(URL)
-    # print(url)
     driver.implicitly_wait(50)
-    
-    # Getting current URL 
     get_url = driver.current_url 
   
-    # Printing the URL 
+    # # Printing the URL 
     print(get_url) 
+    # pn=driver.find_element_by_class_name("B_NuCI")
     pn=driver.find_element_by_id("productTitle")
     price = driver.find_element_by_id("priceblock_ourprice")
 
+    # print("\n--------Name----\n")
+    # print(pn.get_attribute('innerHTML'))
+    # print("\n")
+    # print(price.get_attribute('innerHTML'))
     print("\n--------Name----\n")
-    print(pn.get_attribute('innerHTML'))
+    print(pn.get_attribute('innerText'))
     print("\n")
     print(price.get_attribute('innerHTML'))
-#     html = driver.page_source
-#     f = open("amazon_product.html", "w")
-#     f.write(html)
-#     f.close()
-#     # time.sleep(2)
-#     # print(html)
-#     new = 2
-#     url = "file:///home/priya/Minor_Project/amazon_product.html"
-#     webbrowser.open(url,new=new)
-
-# # close web browser
-#     driver.close()
-    # myphone=[]
-    # myprice=[]
-
-    # for phone in phonenames:
-    #     print(phone.text)
-    #     myphone.append(phone.text)
-
-
-    # for price in prices:
-    #     print(price.text)	
-    #     myprice.append(price.text)
-    # finallist=zip(myphone,myprice)
-
-# for data in list(finallist):
-# 	print(data)
-#     #time.sleep(20)
 
 def flipkart(product):
     print("\n-------------Flipkart-----------\n")
@@ -137,10 +105,14 @@ def flipkart(product):
     elem1.send_keys(product)
     elem1.submit()
     driver.implicitly_wait(50)
+    window_after = driver.window_handles[0]
+    driver.switch_to.window(window_after)
+  #  elem2 = driver.find_element_by_partial_link_text(product)
     elem2 = driver.find_element_by_partial_link_text(product)
-    # driver.implicitly_wait(50)
-    #elem2.click()
     driver.execute_script("arguments[0].click();", elem2)
+    window_after = driver.window_handles[1]
+    driver.switch_to.window(window_after)
+    #elem2.click()
     # newURl = driver.window_handles[0]
      # Getting current URL 
     driver.implicitly_wait(50)
@@ -148,52 +120,17 @@ def flipkart(product):
   
     # Printing the URL 
     print(get_url) 
-    # driver.switch_to.window(newURl)
-    # elem3 = driver.find_element_by_tag_name("span")
-    # print(elem3)
-    
-    # phonenames = driver.find_element(By.ID, "productTitle")
-    # print(phonenames)
-    # prices=driver.find_element_by_class("_30jeq3 ").click()
-    
-    # url = driver.get(URL)
-    # print(url)
     driver.implicitly_wait(50)
-    
-    # Getting current URL 
     get_url = driver.current_url 
   
-    # Printing the URL 
+    # # Printing the URL 
     print(get_url) 
-    pn=driver.find_element_by_class_name("B_NuCI")
+    # pn=driver.find_element_by_class_name("B_NuCI")
+    pn = driver.find_element_by_css_selector("#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span")
     # pn = driver.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[1]/div[2]/div[2]/div/div[1]/h1/span[2]")
-    price = driver.find_element_by_class_name("_30jeq3 _16Jk6d")
-
+   # price = driver.find_element_by_class_name("_30jeq3 _16Jk6d")
+    price = driver.find_element_by_css_selector("#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d")
     print("\n--------Name----\n")
-    print(pn.get_attribute('innerHTML'))
+    print(pn.get_attribute('innerText'))
     print("\n")
     print(price.get_attribute('innerHTML'))
-#     html = driver.page_source
-#     f = open("amazon_product.html", "w")
-#     f.write(html)
-#     f.close()
-#     # time.sleep(2)
-#     # print(html)
-#     new = 2
-#     url = "file:///home/priya/Minor_Project/amazon_product.html"
-#     webbrowser.open(url,new=new)
-
-# # close web browser
-#     driver.close()
-    # myphone=[]
-    # myprice=[]
-
-    # for phone in phonenames:
-    #     print(phone.text)
-    #     myphone.append(phone.text)
-
-
-    # for price in prices:
-    #     print(price.text)	
-    #     myprice.append(price.text)
-    # finallist=zip(myphone,myprice)

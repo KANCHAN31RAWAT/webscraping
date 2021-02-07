@@ -8,4 +8,4 @@ def main():
     ####
     product = "Realme 6"
     websites.amazon(product)
-    #websites.flipkart(product)
+    # websites.flipkart(product)
