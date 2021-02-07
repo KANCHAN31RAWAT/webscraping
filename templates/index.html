@@ -19,8 +19,28 @@
 		</button>
 	</form>
 	</div>
-	{% if product %}
-  <h1>{{product}}</h1>
+	{% if a_title %}
+  {{a_title}}
+  {% endif %}
+<br>
+  {% if a_price %}
+  {{a_price}}
+  {% endif %}
+<br>
+  {% if a_url %}
+  <a href="{{a_url}}">{{a_url}}</a>
+  {% endif %}
+<br>
+  {% if f_title %}
+  {{f_title}}
+  {% endif %}
+<br>
+  {% if f_price %}
+  {{f_price}}
+  {% endif %}
+<br>
+  {% if f_url %}
+  <a href="{{f_url}}">{{f_url}}</a>
   {% endif %}
   
 </body>

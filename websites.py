@@ -55,7 +55,8 @@ def amazon(product):
     # Printing the URL 
     print(get_url) 
     driver.implicitly_wait(50)
-    get_url = driver.current_url 
+    get_url = driver.current_url
+    
   
     # # Printing the URL 
     print(get_url) 
@@ -68,9 +69,13 @@ def amazon(product):
     # print("\n")
     # print(price.get_attribute('innerHTML'))
     print("\n--------Name----\n")
-    print(pn.get_attribute('innerText'))
+    title = pn.get_attribute('innerText')
+    print(title)
     print("\n")
-    print(price.get_attribute('innerHTML'))
+    price = price.get_attribute('innerHTML')
+    print(price)
+    driver.close()
+    return title, price, get_url
 
 def flipkart(product):
     print("\n-------------Flipkart-----------\n")
@@ -125,12 +130,13 @@ def flipkart(product):
   
     # # Printing the URL 
     print(get_url) 
-    # pn=driver.find_element_by_class_name("B_NuCI")
     pn = driver.find_element_by_css_selector("#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span")
-    # pn = driver.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[1]/div[2]/div[2]/div/div[1]/h1/span[2]")
-   # price = driver.find_element_by_class_name("_30jeq3 _16Jk6d")
     price = driver.find_element_by_css_selector("#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d")
     print("\n--------Name----\n")
-    print(pn.get_attribute('innerText'))
+    title = pn.get_attribute('innerText')
+    print(title)
     print("\n")
-    print(price.get_attribute('innerHTML'))
+    price = price.get_attribute('innerHTML')
+    print(price)
+    driver.close()
+    return title,price, get_url
