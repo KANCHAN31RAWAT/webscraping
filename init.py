@@ -11,7 +11,6 @@ def home():
 @app.route("/data_handle", methods=['POST', 'GET'])
 def data_handle():
     data = request.form['product']
-    
     a_title, a_price, a_url, f_title, f_price, f_url = core.main(data)
     return render_template("index.html",a_title = a_title, a_price = a_price, a_url = a_url
     ,f_title= f_title, f_price = f_price, f_url = f_url)

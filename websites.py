@@ -16,6 +16,7 @@ def amazon(product):
     chrome_driver_path = "/usr/local/bin/chromedriver"
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
+    options.add_argument('headless')
     options.add_argument('--kiosk')
     options.add_argument('--window-position=0,0')
     options.add_argument('--disable-infobars')
@@ -85,6 +86,7 @@ def flipkart(product):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
     options.add_argument('--kiosk')
+    options.add_argument('headless')
     options.add_argument('--window-position=0,0')
     options.add_argument('--disable-infobars')
     options.add_argument('--window-size=1920,1080')
