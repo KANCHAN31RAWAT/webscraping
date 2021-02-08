@@ -7,34 +7,43 @@ from fake_useragent import UserAgent
 import requests
 import webbrowser
 import time
+from browsermobproxy import Server
 
 
 def amazon(product):
     print("-----------------Amazon----------------------")
+    # server = Server(path = 'browsermob-proxy')
+    # server.start()
+    # proxy = server.create_proxy()
+    # time.sleep(1)
+    # # profile = webdriver.ChromeProfile()
+    # selenium_proxy = proxy.selenium_proxy()
+    # pro = profile.set_proxy(selenium_proxy)
+    # "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
     ua = UserAgent()
-    ua.chrome
+    userAgent = ua.random
     chrome_driver_path = "/usr/local/bin/chromedriver"
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
+    # option.add_argument('--proxy-server=%s' % pro)
     options.add_argument('headless')
     options.add_argument('--kiosk')
     options.add_argument('--window-position=0,0')
     options.add_argument('--disable-infobars')
     options.add_argument('--window-size=1920,1080')
-    options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36")
+    options.add_argument(f'user-agent={userAgent}')
     #headers = {"User-Agent":}
     # options.add_experimental_option("excludeSwitches", ["enable-automation"])
     # options.add_experimental_option('useAutomationExtension', False)
 
     driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=options)
-    print("User AGent\n")
-    user_agent = driver.execute_script("return navigator.userAgent;")
-    print(user_agent)
+    print(userAgent+"\n")
+
+    #clearing cookies
+    driver.delete_all_cookies()
+    # user_agent = driver.execute_script("return navigator.userAgent;")
+    # print(user_agent)
     driver.get("https://www.amazon.com/")
-    #time.sleep(5)
-    # elem = driver.find_element_by_partial_link_text("Amazon")
-    # print("element found")
-    # elem.click()
     elem1 = driver.find_element_by_name("field-keywords")
     elem1.send_keys(product)
     elem1.submit()
@@ -47,9 +56,6 @@ def amazon(product):
     # driver.execute_script("arguments[0].click();", elem2)
     window_after = driver.window_handles[0]
     driver.switch_to.window(window_after)
-    #elem2.click()
-    # newURl = driver.window_handles[0]
-     # Getting current URL 
     driver.implicitly_wait(50)
     get_url = driver.current_url 
   
@@ -64,24 +70,19 @@ def amazon(product):
     # pn=driver.find_element_by_class_name("B_NuCI")
     pn=driver.find_element_by_id("productTitle")
     price = driver.find_element_by_id("priceblock_ourprice")
-
-    # print("\n--------Name----\n")
-    # print(pn.get_attribute('innerHTML'))
-    # print("\n")
-    # print(price.get_attribute('innerHTML'))
     print("\n--------Name----\n")
     title = pn.get_attribute('innerText')
     print(title)
     print("\n")
     price = price.get_attribute('innerHTML')
     print(price)
-    driver.close()
+    driver.quit()
     return title, price, get_url
 
 def flipkart(product):
     print("\n-------------Flipkart-----------\n")
     ua = UserAgent()
-    ua.chrome
+    userAgent = ua.random
     chrome_driver_path = "/usr/local/bin/chromedriver"
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
@@ -89,6 +90,7 @@ def flipkart(product):
     options.add_argument('headless')
     options.add_argument('--window-position=0,0')
     options.add_argument('--disable-infobars')
+    options.add_argument(f'user-agent={userAgent}')
     options.add_argument('--window-size=1920,1080')
     options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36")
     #headers = {"User-Agent":}
@@ -96,18 +98,14 @@ def flipkart(product):
     # options.add_experimental_option('useAutomationExtension', False)
 
     driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=options)
-    print("User AGent\n")
-    user_agent = driver.execute_script("return navigator.userAgent;")
-    print(user_agent)
-    # driver.get("http://google.com")
-    # inputElement = driver.find_element_by_name("q")
-    # inputElement.send_keys("Amazon")
-    # inputElement.submit()
+
+    print(userAgent)
+    # clearing cookies
+    driver.delete_all_cookies()
+    # print("User AGent\n")
+    # user_agent = driver.execute_script("return navigator.userAgent;")
+    # print(user_agent)
     driver.get("https://www.flipkart.com/")
-    #time.sleep(5)
-    # elem = driver.find_element_by_partial_link_text("Amazon")
-    # print("element found")
-    # elem.click()
     elem1 = driver.find_element_by_name("q")
     elem1.send_keys(product)
     elem1.submit()
@@ -140,5 +138,6 @@ def flipkart(product):
     print("\n")
     price = price.get_attribute('innerHTML')
     print(price)
-    driver.close()
+    driver.quit()
+    # print(driver.current_url)
     return title,price, get_url

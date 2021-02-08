@@ -1,47 +1,50 @@
 <html lang="en">
 <head>
-	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}" >
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div class="split left no-gutters">
+	
 	</div>
 	<div class="split right no-gutters">
 		<form class="example" action="{{ url_for('data_handle') }}" method = "POST" style="margin: auto; margin-top: 200px ;max-width: 400px">
 		<input type="text" placeholder="Product_name"name="product">
 		<h1> Select the website:</h1>
 		<label class="main">
-		<input type="checkbox" value="amazon" >AMAZON<br>
-		<input type="checkbox" value="flipkart">FLIPKART<br>
+		<input type="checkbox" value="amazon" checked>AMAZON<br>
+		<input type="checkbox" value="flipkart" checked>FLIPKART<br>
 		</label>
 		<button type="submit">Submit
 		</button>
 	</form>
-	</div>
+<br>
 	{% if a_title %}
-  {{a_title}}
-  {% endif %}
-<br>
-  {% if a_price %}
-  {{a_price}}
-  {% endif %}
-<br>
-  {% if a_url %}
-  <a href="{{a_url}}">{{a_url}}</a>
-  {% endif %}
-<br>
-  {% if f_title %}
-  {{f_title}}
-  {% endif %}
-<br>
-  {% if f_price %}
-  {{f_price}}
-  {% endif %}
-<br>
-  {% if f_url %}
-  <a href="{{f_url}}">{{f_url}}</a>
-  {% endif %}
-  
+	{{a_title}}
+	{% endif %}
+  <br>
+	{% if a_price %}
+	{{a_price}}
+	{% endif %}
+  <br>
+	{% if a_url %}
+	<a href="{{a_url}}">{{a_url}}</a>
+	{% endif %}
+  <br>
+	{% if f_title %}
+	{{f_title}}
+	{% endif %}
+  <br>
+	{% if f_price %}
+	{{f_price}}
+	{% endif %}
+  <br>
+	{% if f_url %}
+	<a href="{{f_url}}">{{f_url}}</a>
+	{% endif %}
+	
+	</div>
+	
 </body>
 </html>
