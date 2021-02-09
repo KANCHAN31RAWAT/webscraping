@@ -35,7 +35,6 @@ def amazon(product):
     #headers = {"User-Agent":}
     # options.add_experimental_option("excludeSwitches", ["enable-automation"])
     # options.add_experimental_option('useAutomationExtension', False)
-
     driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=options)
     print(userAgent+"\n")
 
