@@ -1,4 +1,3 @@
-# from flask import Flask
 from flask import Flask, render_template, request
 import core
 
@@ -17,9 +16,6 @@ def data_handle():
     a_title, a_price, a_url, f_title, f_price, f_url = core.main(data, amazon, flipkart)
     return render_template("index.html",a_title = a_title, a_price = a_price, a_url = a_url
     ,f_title= f_title, f_price = f_price, f_url = f_url)
-# @app.route("/salvador")
-# def salvador():
-#     return "Hello, Salvador"
     
 if __name__ == "__main__":
     app.run(debug=True)

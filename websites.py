@@ -1,32 +1,19 @@
 from selenium.webdriver.support.select import Select
 from selenium import webdriver
-import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from fake_useragent import UserAgent
-import requests
-import webbrowser
 import time
-from browsermobproxy import Server
 
 
 def amazon(product):
     try:
       print("-----------------Amazon----------------------")
-      # server = Server(path = 'browsermob-proxy')
-      # server.start()
-      # proxy = server.create_proxy()
-      # time.sleep(1)
-      # # profile = webdriver.ChromeProfile()
-      # selenium_proxy = proxy.selenium_proxy()
-      # pro = profile.set_proxy(selenium_proxy)
-      # "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
       ua = UserAgent()
       userAgent = ua.random
       chrome_driver_path = "/usr/local/bin/chromedriver"
       options = webdriver.ChromeOptions()
       options.add_argument('--disable-gpu')
-      # option.add_argument('--proxy-server=%s' % pro)
       options.add_argument('headless')
       options.add_argument('--kiosk')
       options.add_argument('--window-position=0,0')
@@ -99,18 +86,12 @@ def flipkart(product):
       options.add_argument(f'user-agent={userAgent}')
       options.add_argument('--window-size=1920,1080')
       options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36")
-      #headers = {"User-Agent":}
-      # options.add_experimental_option("excludeSwitches", ["enable-automation"])
-      # options.add_experimental_option('useAutomationExtension', False)
 
       driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=options)
 
       print(userAgent)
       # clearing cookies
       driver.delete_all_cookies()
-      # print("User AGent\n")
-      # user_agent = driver.execute_script("return navigator.userAgent;")
-      # print(user_agent)
       driver.get("https://www.flipkart.com/")
       elem1 = driver.find_element_by_name("q")
       elem1.send_keys(product)
@@ -124,9 +105,6 @@ def flipkart(product):
       driver.execute_script("arguments[0].click();", elem2)
       window_after = driver.window_handles[1]
       driver.switch_to.window(window_after)
-      #elem2.click()
-      # newURl = driver.window_handles[0]
-      # Getting current URL 
       driver.implicitly_wait(50)
       get_url = driver.current_url 
     
