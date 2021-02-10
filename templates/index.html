@@ -5,47 +5,85 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div class="split left no-gutters">
+	
+	<div class="split left no-gutters" >
 	
 	</div>
-	<div class="split right no-gutters">
-		<form class="example" action="{{ url_for('data_handle') }}" method = "POST" style="margin: auto; margin-top: 200px ;max-width: 400px">
-		<input type="text" placeholder="Product_name"name="product">
-		<h1> Select the website:</h1>
+	<div class="split right no-gutters" style="background-color: #143D59;color:#EFEFEF">
+		<form class="example" action="{{ url_for('data_handle') }}" method = "POST" style="margin: auto; margin-top: 200px ;max-width: 400px;">
+		<input type="text" placeholder="Product name" name="product" style="color: white;border-bottom:2px solid whitesmoke; background-color: transparent;width:match-parent">
+		<div class = "gap">
+			<h1 style="visibility: hidden;">this is gap</h1>
+		</div>
+		<h4> Select the website:
 		<label class="main">
-		<input type="checkbox" value="amazon"  name ="amazon">AMAZON<br>
-		<input type="checkbox" value="flipkart" name = "flipkart">FLIPKART<br>
+		<input type="checkbox" value="amazon"  name ="amazon"><small>Amazon</small><br>
+		<input type="checkbox" value="flipkart" name = "flipkart"><small>Flipkart</small><br>
 		</label>
+		</h4>
 		<button type="submit">Submit
 		</button>
 	</form>
 <br>
-	{% if a_title %}
-	<h1>Amazon</h1>
-	{{a_title}}
+<div class = "gap">
+	<h1 style="visibility: hidden;">this is gap</h1>
+</div>
+{% if a_title %}
+	<div id="amazon_box" style = "background-color: #EFEFEF;border: 2px solid whitesmoke;font-family: comic sans;">
+
+<!-- Hello this is amazon -->
+<div style = "color:#143D59;">
+		<h4>Amazon</h4>
+
+{% if a_title %}
+	<i>{{a_title}}</i>
+	<br>
 	{% endif %}
-  <br>
+	<!-- <h3>Title</h3> -->
+ 
 	{% if a_price %}
-	{{a_price}}
+	<pre><small>Price:		<h2><bold>{{a_price}}</bold</h2></small></pre>
+	<br>
 	{% endif %}
-  <br>
-	{% if a_url %}
-	<a href="{{a_url}}">{{a_url}}</a>
-	{% endif %}
-  <br>
-	{% if f_title %}
-	<h1>Flipkart</h1>
-	{{f_title}}
-	{% endif %}
-  <br>
+	<!-- Price -->
+ 
+	<small>
+ 	 {% if a_url %}
+	<a href="{{a_url}}" style="color:#143D59;text-decoration: none;">{{a_url}}</a>
+	<br>
+	{% endif %}</small>
+	<!-- Url  -->
+ 
+  </div>
+  </div>
+  {% endif %}
+  
+  
+
+{% if f_title %}
+  <div id = "flipkart_box" style="background-color: #EFEFEF;border: 2px solid whitesmoke;font-family: comic sans">
+	  <div style="color:#143D59;">
+	  <h4 > Flipkart</h4>
+	  
+	<!-- Hello this is flipkart -->
+	<i>{{f_title}}</i>
+	<br>
+	<!-- Title -->
+ 
 	{% if f_price %}
-	{{f_price}}
+	<pre><small>Price:		<h2><bold>{{f_price}}</bold></h2></small></pre>
+	<br>
 	{% endif %}
-  <br>
-	{% if f_url %}
-	<a href="{{f_url}}">{{f_url}}</a>
+	<!-- Price -->
+ 
+  
+	<small>{% if f_url %}
+	<a href="{{f_url}}" style="color:#143D59;text-decoration: none;">{{f_url}}</a>
+	{% endif %}</small>
+	  </div>
+	<!-- URL -->
+	</div>
 	{% endif %}
-	
 	</div>
 	
 </body>
