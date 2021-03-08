@@ -20,16 +20,11 @@ def amazon(product):
       options.add_argument('--disable-infobars')
       options.add_argument('--window-size=1920,1080')
       options.add_argument(f'user-agent={userAgent}')
-      #headers = {"User-Agent":}
-      # options.add_experimental_option("excludeSwitches", ["enable-automation"])
-      # options.add_experimental_option('useAutomationExtension', False)
       driver = webdriver.Chrome(executable_path=chrome_driver_path, chrome_options=options)
       print(userAgent+"\n")
 
       #clearing cookies
       driver.delete_all_cookies()
-      # user_agent = driver.execute_script("return navigator.userAgent;")
-      # print(user_agent)
       driver.get("https://www.amazon.com/")
       
       elem1 = driver.find_element_by_name("field-keywords")
@@ -38,7 +33,6 @@ def amazon(product):
       driver.implicitly_wait(50)
       window_after = driver.window_handles[0]
       driver.switch_to.window(window_after)
-    #  elem2 = driver.find_element_by_partial_link_text(product)
       elem2 = driver.find_element_by_partial_link_text(product)
       elem2.click()
       # driver.execute_script("arguments[0].click();", elem2)
